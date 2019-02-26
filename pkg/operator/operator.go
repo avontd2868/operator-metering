@@ -2,6 +2,7 @@ package operator
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"math/rand"
 	"net/http"
@@ -619,6 +620,9 @@ func (op *Reporting) newPrometheusConnFromURL(url string) (prom.API, error) {
 	if op.cfg.PrometheusConfig.BearerToken != "" {
 		transportConfig.BearerToken = op.cfg.PrometheusConfig.BearerToken
 	}
+
+	log.Print(transportConfig)
+	return nil, errors.New("oh no")
 
 	roundTripper, err := transport.New(&transportConfig)
 	if err != nil {
